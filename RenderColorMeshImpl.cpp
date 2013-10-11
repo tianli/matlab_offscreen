@@ -54,6 +54,12 @@ static void renderColorMesh(double *FM, int fNum, double *VM, int vNum, float *C
 #endif
 
 	drawPatchAndConvert(list, imgBuffer, (int) imgSizeV[0], (int) imgSizeV[1], zoomFactor);
+  
+  // Relase the display list.
+  if (list) {
+    glDeleteLists(list, 1);
+    list = 0;
+  }
 }
 
 void mexFunction(int nlhs, mxArray *plhs[],

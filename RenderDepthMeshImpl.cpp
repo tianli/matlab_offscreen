@@ -60,6 +60,11 @@ mexPrintf("Start to draw the patch\n");
 #endif
 
     drawPatchToDepthBuffer(list, imgBuffer, (int) imgSizeV[0], (int) imgSizeV[1], zoomFactor);
+    // Release the display list.
+    if (list) {
+      glDeleteLists(list, 1);
+      list = 0;
+    }
 }
 
 void mexFunction(int nlhs, mxArray *plhs[],

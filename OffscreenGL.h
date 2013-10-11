@@ -14,7 +14,7 @@
 #include "GL/glu.h"
 //#include "GL/glext.h"
 #include "GL/glut.h"
-
+#include <stdio.h>
 
 class OffscreenGL
 {
@@ -62,17 +62,18 @@ OffscreenGL::OffscreenGL(int maxHeight, int maxWidth) {
 
 OffscreenGL::~OffscreenGL()
 {
-    // detach the texture & FBO
-    glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-            GL_TEXTURE_RECTANGLE_ARB, 0, 0);
-    glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-    glDeleteFramebuffersEXT(1, &fb);
+  // detach the texture & FBO
+  glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+      GL_TEXTURE_RECTANGLE_ARB, 0, 0);
+  glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+  glDeleteFramebuffersEXT(1, &fb);
     
-    glDeleteTextures(1, &renderTex);
+  glDeleteTextures(1, &renderTex);
+  glDeleteTextures(1, &depthTex);
     
-	// We donot destroy the window as freeGLUT in Ubuntu never really destroy
+	// We do not destroy the window as freeGLUT in Ubuntu never really destroy
 	// the window, so we will keep reusing the window to work around the problem.
-    //glutDestroyWindow(glutWin);
+  //glutDestroyWindow(glutWin);
 }
 
 bool checkFramebufferStatus();
