@@ -19,6 +19,8 @@ function OffScreenTest(interactive)
 	%LabeledImageA = ProjectMesh2Image(FM, VM, CamParamStructA, channelModFactor, [480; 640], zoomFactor, [10;20]);
 	%keyboard;
 
+    %% Do not call patch in octave as it is very slow and does not have cameratoolbar.
+    if (~exist('octave_config_info'))
 	%% try to draw the vertex with colors
 	figure;
 	pat = patch('faces', FM, 'vertices', VM, 'FaceVertexCData', FaceColorT(:, :, 1), 'FaceColor', 'flat', 'EdgeColor', 'none');
@@ -40,6 +42,7 @@ function OffScreenTest(interactive)
 	cameratoolbar('SetMode', 'orbit', 'SetCoordSys', 'z');
 	axis equal;
 
+    end
 
 	%% test for rendering an image
     zoomFactor = 1;

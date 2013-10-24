@@ -17,7 +17,7 @@ function [DepthImageM, CameraCoordT] = RenderDepthMesh(FM, VM, CamParamS, ImageS
 
   %% calculates the 3d coordinates from the real depth value. for the screen
   
-  [XM, YM] = meshgrid(1:ImageSizeV(1), 1:ImageSizeV(2));
+  [XM, YM] = meshgrid(1:ImageSizeV(2), 1:ImageSizeV(1));
 
   RealXM = (XM - CamParamS.ccV(1)) / CamParamS.fcV(1) .* RealZM;
   RealYM = (YM - CamParamS.ccV(2)) / CamParamS.fcV(2) .* RealZM;

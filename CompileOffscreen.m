@@ -14,15 +14,16 @@ os = os(1:end-1);
 
 if strcmp(os, 'Darwin')
   %% Mac OS X
-  GlewPath = '-I/opt/local/include -L/opt/local/lib -lGLEW';
-  GlutPath = '-I/opt/local/include -L/opt/local/lib -lglut';
+  GlewPath = '-I/usr/include -L/Users/tianli/Documents/Research/Offscreen/glew-1.10.0/lib -lGLEW';
+  GlutPath = '-L/opt/X11/lib -I/opt/X11/include -lglut -lgl -lglu ';
+  CFlags = '-DNDEBUG'
 elseif strcmp(os, 'Linux')
   %% For Ubuntu Linux, just install libglew1.5 and libglew1.5-dev, freeglut
   %% is usually pre-installed
   GlewPath = '-lGLEW';
   GlutPath = '-lglut -lGL -lGLU';
+  CFlags = '-DUSE_FREEGLUT';
 else
-
   %% For Windows you could download the GLEW and GLUT binary and put them under
   %% the root of this toolbox, then use the following 
   GlewPath = '-I./glew/include -L./glew/lib -lGLEW';
@@ -30,20 +31,20 @@ else
 end
 
 %% Compiling the source code
-disp(['mex ' GlewPath ' ' GlutPath ' MexGlutInit.cpp']);
-eval(['mex ' GlewPath ' ' GlutPath ' MexGlutInit.cpp']);
+disp(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' MexGlutInit.cpp']);
+eval(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' MexGlutInit.cpp']);
 
-disp(['mex ' GlewPath ' ' GlutPath ' BatchFaceColorGradImpl.cpp']);
-eval(['mex ' GlewPath ' ' GlutPath ' BatchFaceColorGradImpl.cpp']);
+disp(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' BatchFaceColorGradImpl.cpp']);
+eval(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' BatchFaceColorGradImpl.cpp']);
 
-disp(['mex ' GlewPath ' ' GlutPath ' ProjectMesh2ImageImpl.cpp']);
-eval(['mex ' GlewPath ' ' GlutPath ' ProjectMesh2ImageImpl.cpp']);
+disp(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' ProjectMesh2ImageImpl.cpp']);
+eval(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' ProjectMesh2ImageImpl.cpp']);
 
-disp(['mex ' GlewPath ' ' GlutPath ' RenderColorMeshImpl.cpp']);
-eval(['mex ' GlewPath ' ' GlutPath ' RenderColorMeshImpl.cpp']);
+disp(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' RenderColorMeshImpl.cpp']);
+eval(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' RenderColorMeshImpl.cpp']);
 
-disp(['mex ' GlewPath ' ' GlutPath ' RenderDepthMeshImpl.cpp']);
-eval(['mex ' GlewPath ' ' GlutPath ' RenderDepthMeshImpl.cpp']);
+disp(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' RenderDepthMeshImpl.cpp']);
+eval(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' RenderDepthMeshImpl.cpp']);
 
-disp(['mex ' GlewPath ' ' GlutPath ' ShadowProj2Impl.cpp']);
-eval(['mex ' GlewPath ' ' GlutPath ' ShadowProj2Impl.cpp']);
+disp(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' ShadowProj2Impl.cpp']);
+eval(['mex ' GlewPath ' ' GlutPath ' ' CFlags ' ShadowProj2Impl.cpp']);

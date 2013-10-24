@@ -36,18 +36,16 @@ private:
 int OffscreenGL::glutWin = -1;
 
 OffscreenGL::OffscreenGL(int maxHeight, int maxWidth) {
-    
-    glutInitDisplayMode(GLUT_DEPTH | GLUT_SINGLE | GLUT_RGBA);
-    glutInitWindowPosition(100,100);
-    glutInitWindowSize(maxWidth, maxHeight);
-    
 	if (glutWin < 0) {
+        glutInitDisplayMode(GLUT_DEPTH | GLUT_SINGLE | GLUT_RGBA);
+        glutInitWindowPosition(100,100);
+        glutInitWindowSize(maxWidth, maxHeight);
         glutWin = glutCreateWindow("Offscreen rendering test");
 	}
 	else {
         glutSetWindow(glutWin);
 	}
-    
+        
 	// We also hide the window so that you don't see it.
 	glutHideWindow();
     glewInit();
@@ -57,7 +55,6 @@ OffscreenGL::OffscreenGL(int maxHeight, int maxWidth) {
     
     this->maxHeight = maxHeight;
     this->maxWidth = maxWidth;
-    
 }
 
 OffscreenGL::~OffscreenGL()
@@ -73,7 +70,10 @@ OffscreenGL::~OffscreenGL()
     
 	// We do not destroy the window as freeGLUT in Ubuntu never really destroy
 	// the window, so we will keep reusing the window to work around the problem.
-  //glutDestroyWindow(glutWin);
+#ifndef USE_FREEGLUT
+  glutDestroyWindow(glutWin);
+  glutWin = -1;
+#endif
 }
 
 bool checkFramebufferStatus();
