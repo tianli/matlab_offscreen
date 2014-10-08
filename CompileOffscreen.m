@@ -14,7 +14,8 @@ os = os(1:end-1);
 
 if strcmp(os, 'Darwin')
   %% Mac OS X
-  GlewPath = '-I/usr/include -L/Users/tianli/Documents/Research/Offscreen/glew-1.10.0/lib -lGLEW';
+  %% To my knowledge, OSX only need GLEW library, you can download the source and compile GLEG from glew.sourceforge.net
+  GlewPath = '-I/usr/include -I/Users/tianli/Documents/codebase/glew-1.11.0/include -L/Users/tianli/Documents/codebase/glew-1.11.0/lib -lGLEW';
   GlutPath = '-L/opt/X11/lib -I/opt/X11/include -lglut -lgl -lglu ';
   CFlags = '-DNDEBUG'
 elseif strcmp(os, 'Linux')

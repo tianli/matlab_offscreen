@@ -13,7 +13,7 @@ for ii = 1 : imagenum
 	
 	TestImageA{ii} = imread([imagebase,'buddha', indexname, '.png']);
 	
-	ImageMaskA{ii} = imread([imagebase,'mask_', indexname, '.png']);
+	ImageMaskA{ii} = im2uint8(imread([imagebase,'mask_', indexname, '.png']));
 
 end
 
