@@ -12,7 +12,6 @@
 #include "GL/glew.h"
 #include "GL/gl.h"
 #include "GL/glu.h"
-//#include "GL/glext.h"
 #include "GL/glut.h"
 #include <stdio.h>
 
@@ -41,8 +40,7 @@ OffscreenGL::OffscreenGL(int maxHeight, int maxWidth) {
         glutInitWindowPosition(100,100);
         glutInitWindowSize(maxWidth, maxHeight);
         glutWin = glutCreateWindow("Offscreen rendering test");
-	}
-	else {
+	} else {
         glutSetWindow(glutWin);
 	}
         

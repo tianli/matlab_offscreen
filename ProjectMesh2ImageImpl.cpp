@@ -64,9 +64,9 @@ void getLabeledImages(
 	}
 	mxFree(imageBuffer);
 	// Relase the display list.
-	if (list) {
-		glDeleteLists(list, 1);
-		list = 0;
+	if (batchList) {
+		glDeleteLists(batchList, 1);
+		batchList = 0;
 	}
 	printf("Done\n");
 }
