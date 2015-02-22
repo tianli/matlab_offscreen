@@ -15,9 +15,7 @@ function OffScreenTest(interactive)
 	zoomFactor = 2;
 
 	[FaceColorT, FaceVisibleM] = BatchFaceColorGrad(FM, VM, CamParamStructA, [480; 640], zoomFactor, TestImageA, ImageMaskA, channelModFactor, [10;20]);
-	%LabeledImageA = BatchFaceColorGrad(FM, VM, CamParamStructA, [480; 640], zoomFactor, TestImageA, ImageMaskA, channelModFactor, [10;20]);
-	%LabeledImageA = ProjectMesh2Image(FM, VM, CamParamStructA, channelModFactor, [480; 640], zoomFactor, [10;20]);
-	%keyboard;
+	LabeledImageA = ProjectMesh2Image(FM, VM, CamParamStructA, channelModFactor, [480; 640], zoomFactor, [10;20]);
 
     %% Do not call patch in octave as it is very slow and does not have cameratoolbar.
     if (~exist('octave_config_info'))
@@ -47,8 +45,6 @@ function OffScreenTest(interactive)
 	%% test for rendering an image
     zoomFactor = 1;
 
-	%ColorImageT = RenderColorMesh(FM, VM, repmat([1 1 1], [size(FM,1), 1]), CamParamStructA{3}, [480; 640], [10; 20], zoomFactor);
-	
 	ColorImageT = RenderColorMesh(FM, VM, repmat(FaceColorT(:, :, 1), [1 1 3]), CamParamStructA{3}, [480; 640], [10; 20], zoomFactor);
 	figure;
 	imshow(ColorImageT);

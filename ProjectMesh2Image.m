@@ -9,12 +9,12 @@
 %		RcM: 3x3 matrix, the rotation matrix
 %		fcV: 2x1 vector, the focal length in x and y direction
 %		ccV: 2x1 vector, the camera center
-%		imSizeV: 2x1 vector, the image size of the current camera
+%		imSizeV: 2x1 vector, the image size of the current camera [height; width]
 % channelModFactor: the factor to create distinctive face color, usually 2 or 4
 % ScreenSizeV: the maximum size of the screen needed, (note the the rendered image size
 %				can be smaller, but no bigger)
-% zoomFactor: non zero to zoom the rendered image, must be integer
-% ZNearFarV: the closest and furthest distance to generate the view frustum
+% zoomFactor: set to non zero to zoom the rendered image, must be integer.
+% ZNearFarV: the closest and furthest distance to generate the view frustum.
 % 
 % Copyright (c) 2009  Tianli Yu (yu_tianli@hotmail.com)
 %

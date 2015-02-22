@@ -20,7 +20,7 @@ Directly using OpenGL calls has the advantage of using more advanced graphics ha
 
 [Installation]
 
-1. You will need GLUT and GLEW library to compile and run this toolbox. Mathworks now requires all the binaries being removed from the uploaded package, so I can no longer include any of these libraries. 
+1. You will need GLUT and GLEW library to compile and run this toolbox. Mathworks now requires all the binaries being removed from the uploaded package, so I can no longer include any of these libraries. To install these library on ubuntu, you can try "sudo apt-get install freeglut3-dev libglew-dev". 
 2. Compile the mex source code
 	After install GLUT and GLEW, you could run the compilation script "CompileOffscreen.m" to compile all the mex source code. Be sure to change the path at the beginning of the script to point to the correct location.
 3. Run the test script "OffscrenTest.m" to test if everything works fine.

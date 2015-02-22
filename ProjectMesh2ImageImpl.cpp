@@ -43,13 +43,19 @@ void getLabeledImages(
 	for (i = 0; i < imageNum; i++) {
 		
 		printf(" %d ", i);
-		if (i % 8 == 7) {
+		if (i % 10 == 9) {
 			printf("\n");
 		}
 		
 		currentCamParamS = mxGetCell(CamParamSA, i);
 	
-		double *imSizeV = mxGetPr(mxGetField(currentCamParamS, 0, "imSizeV"));
+    mxArray* imSizeArray = mxGetField(currentCamParamS, 0, "imSizeV");
+    double* imSizeV;
+    if (imSizeArray != NULL) {
+		  imSizeV = mxGetPr(imSizeArray);
+    } else {
+      imSizeV = ScreenSizeV;
+    }
 		
 		cameraSetup(currentCamParamS, ZNearFarV[0], ZNearFarV[1], imSizeV[0], imSizeV[1], zoomFactor);
 		drawPatch(batchList, imageBuffer, imSizeV[0], imSizeV[1], zoomFactor);		

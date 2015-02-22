@@ -4,6 +4,8 @@
 #define COLOR_MODULATE_CHANNEL 3
 #define MAX_COLOR_CHANNEL 3
 
+#define NDEBUG
+
 /**
  *	Create the display list to draw the patch multiple times, use color to modulate the triangles
  */ 
@@ -35,10 +37,6 @@ GLuint createDisplayList(double *fM, int fNum, double *vM, int vNum, unsigned in
 		glVertex3d(vM[vIndex], vM[vIndex + vNum], vM[vIndex + 2*vNum] );
 		vIndex = (int)fp[fNum2] - 1;
 		glVertex3d(vM[vIndex], vM[vIndex + vNum], vM[vIndex + 2*vNum] );
-		
-		// debug
-		//printf("%f %f %f %d\n", vM[vIndex], vM[vIndex + vNum], vM[vIndex + 2*vNum], i);
-		//printf("color: %d %d %d %d %d\n", colorModFactor, i / channelCapacity2 * colorModFactor, i / channelCapacity % channelCapacity * colorModFactor, i % channelCapacity * colorModFactor, i);
 	}
 	
 	glEnd ();	
@@ -179,7 +177,7 @@ void drawPatch(GLuint listName, GLubyte *imageBuffer, unsigned int imgHeight, un
 	glCallList (listName);
 	glFlush ();
 	
-	// This is a temporary bug fix for Nvidia's open program
+	// This is a temporary bug fix for Nvidia's opengl driver
 	// seems the width of the pixel has to be a multiple of 4
 	// for other width, we have to pad the width and remove it later
 	unsigned int paddedWidth = imgWidth * zoomFactor % 4;
@@ -205,7 +203,7 @@ void colorDemodulation(GLubyte *imageBuffer, unsigned int channelModFactor,
 	
 	unsigned int colorImageIndex;
 	
-	// This is a temporary bug fix for Nvidia's open program
+	// This is a temporary bug fix for Nvidia's opengl driver
 	// seems the width of the pixel has to be a multiple of 4
 	// for other width, we have to pad the width and remove it later
 	unsigned int paddedWidth = imgWidth * zoomFactor % 4;

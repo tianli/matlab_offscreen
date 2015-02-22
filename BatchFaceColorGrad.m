@@ -6,7 +6,7 @@
 function [FaceColorT, FaceVisibleM] = BatchFaceColorGrad(FM, VM, CamParamSA, ...
 			ScreenSizeV, zoomFactor, TestImageA, ImageMaskA, channelModFactor, zNearFarV)
 
-    MexGlutInit;
+  MexGlutInit;
 
 	%% Check the input data type
 	imageNum = length(TestImageA);
